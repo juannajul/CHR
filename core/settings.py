@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Local apps
-    'citybike.apps.CitybikeConfig'
+    'citybike.apps.CitybikeConfig',
+    'webscraping.apps.WebscrapingConfig'
 ]
 
 MIDDLEWARE = [
