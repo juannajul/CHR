@@ -13,20 +13,33 @@ def create_network(network, network_location, network_stations):
         )
         create_network.save()
         # Create network location.
-        create_network_location = Location.objects.create(
+        create_network_location(network_location, create_network)
+        # Create network stations.
+        create_network_station(network_stations, create_network)
+    except IntegrityError as e:
+        return JsonResponse({"error": str(e)}, status=404)
+
+
+def create_network_location(network_location, network):
+    # Create network location for citybike network.
+    create_network_location = Location.objects.create(
                 city=network_location['city'], country=network_location['country'],
                 latitude=network_location['latitude'], longitude=network_location['longitude'],
-                network=create_network
+                network=network
         )
-        create_network_location.save()
-        # Create network stations.
-        for station in network_stations:
+    create_network_location.save()
+    return create_network_location
+
+def create_network_station(network_stations, network):
+    # Create network stations for citybike network.
+    for station in network_stations:
             create_network_station = Station.objects.create(
                     empty_slots=station['empty_slots'], free_bikes=station['free_bikes'],
                     id=station['id'], latitude=station['latitude'], longitude=station['longitude'],
-                    name=station['name'], timestamp=station['timestamp'], network=create_network
+                    name=station['name'], timestamp=station['timestamp'], network=network
             )
             create_network_station.save()
+            # Create stations extra data.
             station_extra_data = station['extra']
             create_station_extra = StationExtra.objects.create(
                     station=create_network_station, address=station_extra_data['address'],
@@ -41,5 +54,5 @@ def create_network(network, network_location, network_stations):
             if post_code != None:
                 create_station_extra.post_code = post_code
                 create_station_extra.save()
-    except IntegrityError as e:
-        return JsonResponse({"error": str(e)}, status=404)
+    return Station.objects.filter(network=network)    
+    
