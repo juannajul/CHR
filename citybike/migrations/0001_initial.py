@@ -33,13 +33,14 @@ class Migration(migrations.Migration):
                 ('longitude', models.DecimalField(decimal_places=7, default=0, max_digits=10)),
                 ('name', models.CharField(max_length=255)),
                 ('timestamp', models.DateTimeField()),
+                ('network', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='network_station', to='citybike.network')),
             ],
         ),
         migrations.CreateModel(
             name='StationExtra',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('addres', models.CharField(max_length=255)),
+                ('address', models.CharField(max_length=255)),
                 ('altitude', models.DecimalField(decimal_places=7, default=0, max_digits=10)),
                 ('ebikes', models.IntegerField(default=0)),
                 ('has_ebikes', models.BooleanField(default=False)),
