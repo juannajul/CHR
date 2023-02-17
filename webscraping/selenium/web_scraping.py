@@ -22,7 +22,7 @@ def get_environmental_evaluation_projects():
     page_number = driver.find_element("xpath", f'//*[@id="info_resultado"]')
     pages_qty = int(page_number.text.split('\n')[-1].split(':')[1].replace(',',''))
     projects = []
-    while page_index <= 10:
+    while page_index <= pages_qty:
         for i in range(10):
             """Get project data from table."""
             id = driver.find_element("xpath", f'/html/body/div[1]/div[1]/div/div[3]/div[4]/div/table/tbody/tr[{i+1}]/td[1]')
