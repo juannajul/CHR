@@ -58,16 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env("SQL_ENGINE", default="django.db.backends.sqlite3"),
-#         "NAME": env("SQL_DATABASE", default=BASE_DIR / "db.sqlite3"),
-#         "USER": env("SQL_USER", default="user"),
-#         "PASSWORD": env("SQL_PASSWORD", default="password"),
-#         "HOST": env("SQL_HOST", default="localhost"),
-#         "PORT": env("SQL_PORT", default="5432"),
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': env('DB_ENGINE'),
@@ -115,6 +105,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files 
+
+MEDIA_URL = "/mediafiles/"
+MEDIA_ROOT = BASE_DIR / "mediafiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

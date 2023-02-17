@@ -1,15 +1,11 @@
 from django.shortcuts import render
 import requests
-from django.db import IntegrityError
 from django.http import JsonResponse
-from .models import Network, Location, Station, StationExtra
+from .models import Network
 from .create_networks.create_networks import create_network
 # Create your views here.
 
-def index(request):
-    pass
-
-def get_network_info(request):
+def get_citybike_network_info(request):
     # Get information from the API
     if request.method == 'GET':
         url = 'http://api.citybik.es/v2/networks/bikesantiago'

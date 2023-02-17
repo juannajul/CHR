@@ -3,7 +3,7 @@ from django.db import models
 Environmental evaluation projects model.
 """
 class Project(models.Model):
-    project_id = models.IntegerField(unique=True, blank=True, null=True)
+    project_id = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=255)
     project_type = models.CharField(max_length=64)
     region = models.CharField(max_length=64)
@@ -25,7 +25,7 @@ class Project(models.Model):
             'region': self.region,
             'typology': self.typology,
             'titular': self.titular,
-            'investment': self.investment,
+            'investment': str(self.investment),
             'date': self.date.strftime('%d/%m/%Y'), 
             'status': self.status,
             'map': self.map

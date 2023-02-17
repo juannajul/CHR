@@ -5,14 +5,16 @@ from selenium.webdriver.common.by import By
 from ..models import Project
 from decimal import Decimal
 import datetime 
+import json
 
 
-def get_environmental_evaluation():
-    url = 'https://seia.sea.gob.cl/busqueda/buscarProyectoAction.php '
+def get_environmental_evaluation_projects():
+    """Get information for enviromental evaluation projects."""
+    url = 'https://seia.sea.gob.cl/busqueda/buscarProyectoAction.php'
     options = webdriver.ChromeOptions()
     options.add_argument('--start-maximized')
     options.add_argument('--disable-extensions')
-    driver_path = './chromedriver.exe'
+    driver_path = './chromedriver.exe' # path to webdriver.exe in the system 
     driver = webdriver.Chrome(driver_path, chrome_options=options)
     # initializate 
     driver.get(url)
@@ -20,8 +22,9 @@ def get_environmental_evaluation():
     page_number = driver.find_element("xpath", f'//*[@id="info_resultado"]')
     pages_qty = int(page_number.text.split('\n')[-1].split(':')[1].replace(',',''))
     projects = []
-    while page_index <= 5:
+    while page_index <= 10:
         for i in range(10):
+            """Get project data from table."""
             id = driver.find_element("xpath", f'/html/body/div[1]/div[1]/div/div[3]/div[4]/div/table/tbody/tr[{i+1}]/td[1]')
             name = driver.find_element("xpath", f'/html/body/div[1]/div[1]/div/div[3]/div[4]/div/table/tbody/tr[{i+1}]/td[2]')
             project_type = driver.find_element("xpath", f'/html/body/div[1]/div[1]/div/div[3]/div[4]/div/table/tbody/tr[{i+1}]/td[3]')
@@ -43,6 +46,7 @@ def get_environmental_evaluation():
             date = date.text.split('/')
             date_parsed = datetime.datetime(int(date[2]), int(date[1]), int(date[0]))
             investment = investment.text.replace('.','')
+            # Create project object.
             project = Project.objects.create(
                 project_id=int(id.text), name=name.text, project_type=project_type.text,
                 region=region.text, typology=typology.text, titular=titular.text,
@@ -62,3 +66,7 @@ def get_environmental_evaluation():
     driver.quit()
     return projects
                                       
+def write_json(data, filename='projects.json'):
+    """Create json file for projects data."""
+    with open('mediafiles/projects_json/' + filename, "w") as f:
+        json.dump(data, f, indent=2)

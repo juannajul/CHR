@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
-
 class LocationInline(admin.StackedInline):
     model = Location
     can_delete = True
