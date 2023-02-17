@@ -47,7 +47,7 @@
     * el modulo "create_networks" se encarga de guardar toda la información obtenida de la API en la base de datos.
 
 #### Tarea 2:
-* Al realizar la "tarea 2" se creó la aplcación de django webscraping cons sus urls, models y views.
+* Al realizar la "tarea 2" se creó la aplicación de django webscraping cons sus urls, models y views.
 * al ingresar en la ruta: http://127.0.0.1:8000/scraping/get_environmental_info/ :
     * La aplicación obtendrá la información proporcionada por la tabla de la url: https://seia.sea.gob.cl/busqueda/buscarProyectoAction.php navegando utilizando selenium.
     * Utilizando selenium navegará a través de todas las paginas de la tabla de dicha url.
@@ -55,4 +55,5 @@
     * Creará un archivo json en la siguiente ruta: mediafiles/projects_json/projects.json [![json.png](https://i.postimg.cc/J4hrTH4R/json.png)](https://postimg.cc/6TDxq3vP)
     * el modulo selenium en la app webscraping (webscraping/selenium/) se encarga de obtener toda la información de la url porporcionada, 
     guardarla en la base de datos y crear el archivo json.
+    * retornará un JSONresponse con la informacion obtenida.
     * Todos los datos pueden ser observados en el modelo Project dentro del Django admin.
