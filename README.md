@@ -56,5 +56,5 @@
     * Creará un archivo json en la siguiente ruta: mediafiles/projects_json/projects.json [![json.png](https://i.postimg.cc/J4hrTH4R/json.png)](https://postimg.cc/6TDxq3vP)
     * el modulo selenium en la app webscraping (webscraping/selenium/) se encarga de obtener toda la información de la url porporcionada, 
     guardarla en la base de datos y crear el archivo json.
-    * retornará un JSONresponse con la informacion obtenida.
+    * retornará un JSONresponse con la información obtenida.
     * Todos los datos pueden ser observados en el modelo Project dentro del Django admin.

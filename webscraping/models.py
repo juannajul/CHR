@@ -4,7 +4,7 @@ Environmental evaluation projects model.
 """
 class Project(models.Model):
     project_id = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=555)
     project_type = models.CharField(max_length=64)
     region = models.CharField(max_length=64)
     typology = models.CharField(max_length=64)
