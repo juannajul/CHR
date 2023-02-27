@@ -1,4 +1,4 @@
-# Web Scrapper
+# Web Scraping
 
 ### Iniciar Proyecto:
 * `Descargar repositorio`
