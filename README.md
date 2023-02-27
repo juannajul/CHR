@@ -1,4 +1,4 @@
-# CHR
+# Web Scrapper
 
 ### Iniciar Proyecto:
 * `Descargar repositorio`
